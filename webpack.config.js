@@ -7,6 +7,17 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    }, 
+    port: 8080,
+    compress: false,
+    hot: true,
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -19,6 +30,7 @@ module.exports = {
       },
       {
         test: /\.m?js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
